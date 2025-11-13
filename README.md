@@ -1,34 +1,34 @@
-# 🛒 BigMart Sales Forecasting Pipeline  
+🛒 BigMart Sales Forecasting Pipeline
 
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-red?logo=streamlit)
-![MySQL](https://img.shields.io/badge/Database-MySQL-blue?logo=mysql)
-![Machine Learning](https://img.shields.io/badge/Machine_Learning-ScikitLearn-orange?logo=scikit-learn)
-![Status](https://img.shields.io/badge/Status-Deployed-brightgreen)
 
-> 🚀 A complete **Data Engineering + Machine Learning** pipeline for predicting sales across BigMart outlets.  
-> From **XML data ingestion → MySQL database → ML model training → Streamlit deployment**, this project shows an end-to-end automated system.
 
----
 
-## 🌐 Live Demo  
-👉 [**BigMart Streamlit App**](https://dataengineeringproject-bigmart.streamlit.app)
 
----
 
-## 🧩 Project Overview  
+
+
+
+
+🚀 A complete Data Engineering + Machine Learning pipeline for predicting sales across BigMart outlets.
+From XML data ingestion → MySQL database → ML model training → Streamlit deployment, this project showcases an end-to-end automated system.
+
+🌐 Live Demo
+
+👉 BigMart Streamlit App
+
+🧩 Project Overview
 
 This project demonstrates how to:
-- Ingest XML data files directly into a **MySQL database**  
-- Perform **data cleaning** and **feature engineering**  
-- Train and evaluate multiple **machine learning models**  
-- Deploy a **Streamlit web app** for real-time sales prediction  
 
----
+Ingest XML data files directly into a MySQL database
 
-## 🏗️ System Architecture  
+Perform data cleaning and feature engineering
 
-```mermaid
+Train and evaluate multiple machine learning models
+
+Deploy a Streamlit web app for real-time sales prediction
+
+🏗️ System Architecture
 flowchart TD
     A1[📂 XML Files<br>(df_item, df_outlet, df_sales)] --> B1[(MySQL Database)]
     B1 --> C1[🧹 Data Cleaning<br>& Feature Engineering]
@@ -36,9 +36,8 @@ flowchart TD
     D1 --> E1[💾 Save Best Model<br>(bigmart_best_model.pkl)]
     E1 --> F1[🌐 Streamlit App<br>(app.py)]
     F1 --> G1[📊 Predict Item Sales]
+
 📂 Repository Structure
-bash
-Copy code
 BigMart-Sales-Forecasting/
 │
 ├── app.py                     # Streamlit app for live prediction
@@ -50,18 +49,20 @@ BigMart-Sales-Forecasting/
 ├── bigmart_best_model.pkl     # Trained ML pipeline (auto-generated)
 ├── requirements.txt           # Required libraries
 └── README.md                  # Project documentation
+
 ⚙️ Workflow Summary
 🧱 1. Data Ingestion
+
 Parses 3 XML files using Pandas.
 
 Dynamically creates MySQL tables (item_info, outlet_info, sales_info).
 
 Loads all records automatically.
 
-bash
-Copy code
 python create_db_from_data.py
+
 🧠 2. Data Processing & Feature Engineering
+
 Merges tables on ID
 
 Fixes inconsistent categories (LF → Low Fat, etc.)
@@ -71,6 +72,7 @@ Caps extreme values (Item_Visibility ≤ 0.3)
 Creates derived feature: Outlet_Age = 2025 - Establishment_Year
 
 🤖 3. Model Training
+
 Trains and compares 3 regression models:
 
 Model	Description	Result
@@ -80,19 +82,19 @@ LinearRegression	Baseline linear model	For comparison
 
 ✅ Best model saved as bigmart_best_model.pkl.
 
-bash
-Copy code
 python train_model.py
+
 🚀 4. Streamlit Deployment
+
 The Streamlit interface allows users to:
 
 Input product & outlet details
 
 Get instant sales predictions in ₹
 
-bash
-Copy code
 streamlit run app.py
+
+
 Sample Output:
 
 📈 Predicted Item Outlet Sales: ₹2457.32
@@ -105,8 +107,8 @@ Modeling	Scikit-learn (Gradient Boosting, RF, Linear)
 Backend	Python
 Frontend	Streamlit
 Serialization	Pickle
-
 🧩 Key Features
+
 ✅ Fully automated database creation from XML
 ✅ Dynamic SQL table generation
 ✅ Feature engineering + model evaluation
@@ -125,44 +127,44 @@ Outlet Age	15
 Predicted Sales → ₹2348.67
 
 ⚙️ Installation
+
 1️⃣ Clone this repository
 
-bash
-Copy code
 git clone https://github.com/parshva106/BigMart-Sales-Forecasting.git
 cd BigMart-Sales-Forecasting
+
+
 2️⃣ Install dependencies
 
-bash
-Copy code
 pip install -r requirements.txt
+
+
 3️⃣ Set up MySQL
 
-bash
-Copy code
 python create_db_from_data.py
+
+
 4️⃣ Train model
 
-bash
-Copy code
 python train_model.py
+
+
 5️⃣ Run app
 
-bash
-Copy code
 streamlit run app.py
+
 🧰 Requirements
-nginx
-Copy code
 streamlit
 pandas
 numpy
 scikit-learn
 pymysql
 pickle-mixin
+
 🧑‍💻 Author
+
 👋 Parshva Mehta
 🎓 B.Tech – Electronics & Telecommunication
-📫 [parshvamehta@example.com]
-🌐 GitHub Profile
+📫 parshvamehta@example.com
 
+🌐 GitHub Profile
