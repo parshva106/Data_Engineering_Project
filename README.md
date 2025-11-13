@@ -19,6 +19,9 @@ This project demonstrates a full workflow — from **XML data ingestion**, **MyS
 
 ## 🧱 Architecture Overview  
 
+```markdown
+## 🧱 Architecture Overview  
+
 ```mermaid
 flowchart TD
     subgraph Ingestion [Data Ingestion]
@@ -37,11 +40,11 @@ flowchart TD
 
     subgraph Modeling [Model Training]
         B3 --> C1[GradientBoostingRegressor]
-        C1 --> C2[Save bigmart_best_model.pkl]
+        C1 --> C2[Save Model]
     end
 
     subgraph Deployment [Streamlit App]
-        C2 --> D1[Streamlit Web Interface]
+        C2 --> D1[Web Interface]
         D1 --> D2[Predict Sales]
     end
 🚀 Features
