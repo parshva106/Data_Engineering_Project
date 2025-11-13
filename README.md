@@ -5,58 +5,103 @@ A machine learning web application that predicts sales for BigMart products usin
 
 👉 Live Demo: https://dataengineeringproject.streamlit.app/
 
-## Features
-- **Sales Prediction**: Predict product sales based on various features
-- **User-Friendly Interface**: Clean Streamlit-based web interface
-- **Real-time Insights**: Performance gauges and sales insights
-- **Developer Profile**: Contact information and social links
 
 ## Architecture Overview
 <img width="2385" height="3817" alt="deepseek_mermaid_20251110_bf4f86" src="https://github.com/user-attachments/assets/29c36eba-cbe3-44fa-b348-92d2c4fb5c7d" />
 
-## Installation & Usage
+## 🚀 Features  
 
-1. **Install dependencies**:
+### 📊 Data Engineering Pipeline  
+- Automated XML data ingestion from multiple sources  
+- Dynamic **MySQL database creation** and table population  
+- Data cleaning and feature engineering steps for retail datasets  
+- Handling of categorical variables and missing values  
+
+### 🤖 Machine Learning  
+- Gradient Boosting Regressor for accurate sales prediction  
+- Preprocessing with **OneHotEncoder** for categorical variables  
+- Evaluation metrics: **R² Score** and **RMSE**  
+- Model persistence using **Pickle** serialization  
+
+### 🌐 Web Application  
+- Built with **Streamlit**  
+- User-friendly form-based interface  
+- Real-time sales predictions  
+- Deployed via **Streamlit Cloud**
+
+---
+
+## 🛠️ Technical Stack  
+
+| Component | Technology |
+|------------|-------------|
+| **Programming Language** | Python 3.10 |
+| **Database** | MySQL |
+| **Machine Learning Framework** | scikit-learn |
+| **Web Framework** | Streamlit |
+| **Libraries** | pandas, numpy, pickle, pymysql |
+| **Deployment** | Streamlit Cloud |
+
+---
+
+## 📁 Project Structure  
+
 ```bash
-pip install streamlit pandas numpy pillow
-```
-
-2. **Run the application**:
-```bash
-streamlit run App.py
-```
-
-3. **Access the app**:
-   - Open browser and go to `http://localhost:8501`
-
-## File Structure
-```
-BigMart-Sales-Predictor/
+BigMart-Sales-Forecasting/
 │
-├── App.py                 # Main application file
-├── bigmart_best_model.pkl # Pre-trained ML model
-├── requirements.txt       # Python dependencies
-└── README.md             # This file
-```
+├── data/
+│   ├── df_item.xml
+│   ├── df_outlet.xml
+│   ├── df_sales.xml
+│
+├── models/
+│   └── bigmart_best_model.pkl
+│
+├── src/
+│   ├── data_ingestion.py
+│   ├── database_operations.py
+│   ├── model_training.py
+│   └── utils.py
+│
+├── app.py                    # Streamlit web application
+├── requirements.txt          # Dependencies
+└── README.md                 # Project documentation
 
-## Model Performance
-- **Accuracy**: 92%
-- **Training Data**: 8,523 products
-- **Features Used**: 11
-- **Algorithm**: Gradient Boosting
+## 🎯 Model Features  
 
-## Developer
-**Sanket Sanjay Sonparate**
-- Email: sonparatesanket@gmail.com
-- GitHub: [sankyyy28](https://github.com/sankyyy28)
-- LinkedIn: [Sanket Sonparate](https://www.linkedin.com/in/sanket-sonparate-018350260)
+### 🔧 Preprocessing Pipeline  
+- **Categorical Encoding:** OneHotEncoder for 7 categorical features  
+- **Numerical Features:** Passed directly without transformation  
+- **Sparse Output:** Optimized for memory efficiency  
 
-## Features Importance
-The model considers these as most influential factors:
-1. Item MRP (Maximum Retail Price)
-2. Outlet Type
-3. Outlet Age
-4. Item Visibility
-5. Outlet Location Type
+---
 
-This application demonstrates end-to-end machine learning deployment with a focus on user experience and practical business insights.
+### 📈 Model Specifications  
+
+| Parameter | Value |
+|------------|--------|
+| Algorithm | GradientBoostingRegressor |
+| Estimators | 300 |
+| Max Depth | 3 |
+| Learning Rate | 0.1 |
+| Loss Function | HalfSquaredError |
+
+---
+
+## 🏷️ Feature Set  
+
+| Category | Features |
+|-----------|-----------|
+| **Product Info** | Item_Identifier, Item_Weight, Item_Fat_Content, Item_Visibility, Item_Type, Item_MRP |
+| **Outlet Info** | Outlet_Identifier, Outlet_Size, Outlet_Location_Type, Outlet_Type, Outlet_Age |
+
+---
+
+## 🚀 Quick Start  
+
+### 1️⃣ Installation  
+
+```bash
+git clone https://github.com/parshva106/BigMart-Sales-Forecasting.git
+cd BigMart-Sales-Forecasting
+pip install -r requirements.txt
