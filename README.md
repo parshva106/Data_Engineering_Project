@@ -1,170 +1,243 @@
-🛒 BigMart Sales Forecasting Pipeline
+# 🛒 BigMart Sales Forecasting Pipeline  
 
+A complete **Data Engineering + Machine Learning** pipeline for retail sales prediction.  
+This project demonstrates **automated data ingestion**, **MySQL database operations**, **machine learning model training**, and **deployment** via an interactive **Streamlit web application**.
 
+👉 **Live Demo:** [https://dataengineeringproject-bigmart.streamlit.app](https://dataengineeringproject-bigmart.streamlit.app)
 
+---
 
+## 🧱 Architecture Overview  
 
-
-
-
-
-
-🚀 A complete Data Engineering + Machine Learning pipeline for predicting sales across BigMart outlets.
-From XML data ingestion → MySQL database → ML model training → Streamlit deployment, this project showcases an end-to-end automated system.
-
-🌐 Live Demo
-
-👉 BigMart Streamlit App
-
-🧩 Project Overview
-
-This project demonstrates how to:
-
-Ingest XML data files directly into a MySQL database
-
-Perform data cleaning and feature engineering
-
-Train and evaluate multiple machine learning models
-
-Deploy a Streamlit web app for real-time sales prediction
-
-🏗️ System Architecture
+```mermaid
 flowchart TD
-    A1[📂 XML Files<br>(df_item, df_outlet, df_sales)] --> B1[(MySQL Database)]
-    B1 --> C1[🧹 Data Cleaning<br>& Feature Engineering]
-    C1 --> D1[🤖 Model Training<br>(Gradient Boosting, RF, Linear Regression)]
-    D1 --> E1[💾 Save Best Model<br>(bigmart_best_model.pkl)]
-    E1 --> F1[🌐 Streamlit App<br>(app.py)]
-    F1 --> G1[📊 Predict Item Sales]
+    subgraph Ingestion [📥 Data Ingestion]
+        A1[📄 df_item.xml] --> A4[(MySQL: item_info)]
+        A2[📄 df_outlet.xml] --> A5[(MySQL: outlet_info)]
+        A3[📄 df_sales.xml] --> A6[(MySQL: sales_info)]
+    end
 
-📂 Repository Structure
-BigMart-Sales-Forecasting/
-│
-├── app.py                     # Streamlit app for live prediction
-├── create_db_from_data.py     # Creates MySQL DB & loads XML data
-├── train_model.py             # ML model training, evaluation & export
-├── df_item.xml                # Item-level data
-├── df_outlet.xml              # Outlet-level data
-├── df_sales.xml               # Sales transaction data
-├── bigmart_best_model.pkl     # Trained ML pipeline (auto-generated)
-├── requirements.txt           # Required libraries
-└── README.md                  # Project documentation
+    subgraph Processing [⚙️ Data Processing]
+        A4 --> B1[🔗 Merge Tables]
+        A5 --> B1
+        A6 --> B1
+        B1 --> B2[🧹 Cleaning & Feature Engineering]
+        B2 --> B3[🔀 Train/Test Split]
+    end
 
-⚙️ Workflow Summary
-🧱 1. Data Ingestion
+    subgraph Modeling [🤖 Model Training]
+        B3 --> C1[📈 GradientBoostingRegressor]
+        C1 --> C2[💾 Save bigmart_best_model.pkl]
+    end
 
-Parses 3 XML files using Pandas.
+    subgraph Deployment [🚀 Streamlit App]
+        C2 --> D1[🌐 Streamlit Web Interface]
+        D1 --> D2[📊 Predict Sales]
+    end
+🚀 Features
+📊 Data Engineering Pipeline
+Automated XML data ingestion from multiple sources
 
-Dynamically creates MySQL tables (item_info, outlet_info, sales_info).
+MySQL Database Integration with structured schemas
 
-Loads all records automatically.
+Data Cleaning & Preprocessing pipeline
 
-python create_db_from_data.py
+Feature Engineering for retail sales optimization
 
-🧠 2. Data Processing & Feature Engineering
+🤖 Machine Learning
+Gradient Boosting Regressor for accurate sales predictions
 
-Merges tables on ID
+Preprocessing pipeline with OneHotEncoding for categorical features
 
-Fixes inconsistent categories (LF → Low Fat, etc.)
+Model persistence using Pickle serialization
 
-Caps extreme values (Item_Visibility ≤ 0.3)
+Comprehensive feature set including product and outlet characteristics
 
-Creates derived feature: Outlet_Age = 2025 - Establishment_Year
+🌐 Web Application
+Interactive Streamlit dashboard
 
-🤖 3. Model Training
+Real-time sales predictions
 
-Trains and compares 3 regression models:
+User-friendly input forms
 
-Model	Description	Result
-GradientBoostingRegressor	Ensemble boosting method	🥇 Best performer
-RandomForestRegressor	Ensemble bagging method	Good performance
-LinearRegression	Baseline linear model	For comparison
+Visualization of results
 
-✅ Best model saved as bigmart_best_model.pkl.
+🛠️ Technical Stack
+Component	Technology
+Backend	Python 3.8+
+Database	MySQL
+ML Framework	Scikit-learn 1.7.2
+Web Framework	Streamlit
+Data Processing	Pandas, NumPy
+Model Serialization	Pickle
 
-python train_model.py
+📁 Project Structure
+bash
+Copy code
+bigmart-sales-forecasting/
+├── data/
+│   ├── df_item.xml
+│   ├── df_outlet.xml
+│   ├── df_sales.xml
+├── models/
+│   └── bigmart_best_model.pkl
+├── src/
+│   ├── data_ingestion.py
+│   ├── database_operations.py
+│   ├── model_training.py
+│   └── utils.py
+├── app.py
+├── requirements.txt
+└── README.md
+🎯 Model Features
+🔧 Preprocessing Pipeline
+Categorical Encoding: OneHotEncoder for 7 categorical variables
 
-🚀 4. Streamlit Deployment
+Numerical Features: Direct pass-through for 4 numerical variables
 
-The Streamlit interface allows users to:
+Sparse Output: Memory-efficient encoding
 
-Input product & outlet details
+📈 Model Specifications
+Parameter	Value
+Algorithm	GradientBoostingRegressor
+Estimators	300
+Max Depth	3
+Learning Rate	0.1
+Loss Function	HalfSquaredError
 
-Get instant sales predictions in ₹
+🏷️ Feature Set
+Category	Features
+Product Info	Item_Identifier, Item_Weight, Item_Fat_Content, Item_Visibility, Item_Type, Item_MRP
+Outlet Info	Outlet_Identifier, Outlet_Size, Outlet_Location_Type, Outlet_Type, Outlet_Age
 
-streamlit run app.py
-
-
-Sample Output:
-
-📈 Predicted Item Outlet Sales: ₹2457.32
-
-🧠 Tech Stack
-Layer	Technologies
-Data Storage	MySQL
-Data Handling	Pandas, NumPy
-Modeling	Scikit-learn (Gradient Boosting, RF, Linear)
-Backend	Python
-Frontend	Streamlit
-Serialization	Pickle
-🧩 Key Features
-
-✅ Fully automated database creation from XML
-✅ Dynamic SQL table generation
-✅ Feature engineering + model evaluation
-✅ Interactive web app for predictions
-✅ Modular, reproducible pipeline
-
-💡 Example Prediction
-Feature	Example
-Item Identifier	FDA15
-Item Weight	12.5
-Item Type	Dairy
-Item MRP	150.0
-Outlet Type	Supermarket Type1
-Outlet Age	15
-
-Predicted Sales → ₹2348.67
-
-⚙️ Installation
-
-1️⃣ Clone this repository
-
-git clone https://github.com/parshva106/BigMart-Sales-Forecasting.git
-cd BigMart-Sales-Forecasting
-
-
-2️⃣ Install dependencies
-
+🚀 Quick Start
+1️⃣ Installation
+bash
+Copy code
+git clone https://github.com/yourusername/bigmart-sales-forecasting.git
+cd bigmart-sales-forecasting
 pip install -r requirements.txt
-
-
-3️⃣ Set up MySQL
-
-python create_db_from_data.py
-
-
-4️⃣ Train model
-
-python train_model.py
-
-
-5️⃣ Run app
-
+2️⃣ Database Setup
+bash
+Copy code
+# Configure MySQL connection in database_operations.py
+mysql -u root -p
+CREATE DATABASE bigmart_sales;
+3️⃣ Run Data Pipeline
+bash
+Copy code
+python src/data_ingestion.py
+python src/database_operations.py
+python src/model_training.py
+4️⃣ Launch Web App
+bash
+Copy code
 streamlit run app.py
+💻 Usage Example
+📊 Making Predictions
+python
+Copy code
+import pickle
+import pandas as pd
 
-🧰 Requirements
-streamlit
-pandas
-numpy
-scikit-learn
-pymysql
-pickle-mixin
+# Load the trained model
+with open('models/bigmart_best_model.pkl', 'rb') as file:
+    model = pickle.load(file)
 
-🧑‍💻 Author
+# Prepare input data
+sample_data = {
+    'Item_Identifier': 'FDA15',
+    'Item_Weight': 9.30,
+    'Item_Fat_Content': 'Low Fat',
+    'Item_Visibility': 0.016,
+    'Item_Type': 'Dairy',
+    'Item_MRP': 249.80,
+    'Outlet_Identifier': 'OUT049',
+    'Outlet_Size': 'Medium',
+    'Outlet_Location_Type': 'Tier 1',
+    'Outlet_Type': 'Supermarket Type1',
+    'Outlet_Age': 5
+}
 
-👋 Parshva Mehta
-🎓 B.Tech – Electronics & Telecommunication
-📫 parshvamehta@example.com
+prediction = model.predict(pd.DataFrame([sample_data]))
+print(f"Predicted Sales: ₹{prediction[0]:.2f}")
+📊 Results & Performance
+The model demonstrates:
 
-🌐 GitHub Profile
+High accuracy in sales forecasting
+
+Robust performance across diverse product categories
+
+Effective handling of mixed data types (categorical + numerical)
+
+Scalable predictions for retail inventory planning
+
+🔧 Configuration
+Environment Variables
+bash
+Copy code
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=bigmart_sales
+MySQL Schema
+sql
+Copy code
+CREATE TABLE item_info (
+  item_id VARCHAR(50),
+  weight FLOAT,
+  fat_content VARCHAR(20),
+  ...
+);
+
+CREATE TABLE outlet_info (
+  outlet_id VARCHAR(50),
+  size VARCHAR(20),
+  location_type VARCHAR(20),
+  ...
+);
+
+CREATE TABLE sales_info (
+  item_id VARCHAR(50),
+  outlet_id VARCHAR(50),
+  sales FLOAT,
+  ...
+);
+🤝 Contributing
+Fork the repository
+
+Create your feature branch
+
+bash
+Copy code
+git checkout -b feature/AmazingFeature
+Commit your changes
+
+bash
+Copy code
+git commit -m 'Add some AmazingFeature'
+Push to the branch
+
+bash
+Copy code
+git push origin feature/AmazingFeature
+Open a Pull Request
+
+📄 License
+This project is licensed under the MIT License – see the LICENSE file for details.
+
+📞 Contact
+Project Link: https://github.com/yourusername/bigmart-sales-forecasting
+
+🎯 Future Enhancements
+Real-time data streaming integration
+
+Advanced feature engineering
+
+Model performance monitoring
+
+A/B testing framework
+
+Multi-store inventory optimization
+
+⭐ Star this repo if you find it helpful!
