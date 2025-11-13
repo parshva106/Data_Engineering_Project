@@ -1,134 +1,62 @@
-📊 BigMart Sales Prediction App
+# BigMart Sales Predictor 
 
-A complete Machine Learning + Streamlit project that predicts sales for BigMart retail items using a trained regression model.
-This project demonstrates end-to-end ML deployment, including data preprocessing, model training, and an interactive web interface for real-time predictions.
+## Overview
+A machine learning web application that predicts sales for BigMart products using a Gradient Boosting model. The app provides an intuitive interface for users to input product and outlet details to get sales predictions.
 
-🚀 Live Demo
+👉 Live Demo: https://dataengineeringproject.streamlit.app/
 
-🔗 Try the App Here: Add your Streamlit Cloud / local URL here once deployed
+## Features
+- **Sales Prediction**: Predict product sales based on various features
+- **User-Friendly Interface**: Clean Streamlit-based web interface
+- **Real-time Insights**: Performance gauges and sales insights
+- **Developer Profile**: Contact information and social links
 
-📌 Project Overview
+## Architecture Overview
+<img width="2385" height="3817" alt="deepseek_mermaid_20251110_bf4f86" src="https://github.com/user-attachments/assets/29c36eba-cbe3-44fa-b348-92d2c4fb5c7d" />
 
-The BigMart Sales Predictor uses machine learning to estimate the sales of a retail product based on its attributes and store characteristics.
-It is designed to help businesses understand product demand and optimize retail strategies.
+## Installation & Usage
 
-🎯 Key Capabilities
+1. **Install dependencies**:
+```bash
+pip install streamlit pandas numpy pillow
+```
 
-✔️ Predict sales of a given product
+2. **Run the application**:
+```bash
+streamlit run App.py
+```
 
-✔️ Clean & responsive Streamlit UI
+3. **Access the app**:
+   - Open browser and go to `http://localhost:8501`
 
-✔️ Uses a trained ML model (bigmart_best_model.pkl)
-
-✔️ Fast and lightweight deployment
-
-✔️ Business-friendly insights
-
-🧠 How It Works
-
-The app loads a pre-trained regression model and takes user inputs such as:
-
-Item MRP
-
-Outlet Type
-
-Outlet Location
-
-Item Visibility
-
-Item Type
-
-Outlet Establishment Year
-
-Item Fat Content
-
-and more…
-
-Once submitted, the model instantly predicts expected sales.
-
-🏗️ Project Architecture
-User Input (Streamlit UI)
-        │
-        ▼
-Preprocessing & Encoding
-        │
-        ▼
-ML Model (Gradient Boosting Regressor)
-        │
-        ▼
-Final Sales Prediction Output
-
-
-If you want a Mermaid diagram added here, tell me—I can generate it.
-
-📂 Folder Structure
+## File Structure
+```
 BigMart-Sales-Predictor/
 │
-├── App.py                   # Streamlit app script
-├── bigmart_best_model.pkl   # Trained ML model
-├── requirements.txt         # Dependencies
-└── README.md                # Project documentation
+├── App.py                 # Main application file
+├── bigmart_best_model.pkl # Pre-trained ML model
+├── requirements.txt       # Python dependencies
+└── README.md             # This file
+```
 
-⚙️ Installation & Usage
-1️⃣ Clone the repository
-git clone https://github.com/your-username/BigMart-Sales-Predictor.git
-cd BigMart-Sales-Predictor
+## Model Performance
+- **Accuracy**: 92%
+- **Training Data**: 8,523 products
+- **Features Used**: 11
+- **Algorithm**: Gradient Boosting
 
-2️⃣ Install dependencies
-pip install -r requirements.txt
+## Developer
+**Sanket Sanjay Sonparate**
+- Email: sonparatesanket@gmail.com
+- GitHub: [sankyyy28](https://github.com/sankyyy28)
+- LinkedIn: [Sanket Sonparate](https://www.linkedin.com/in/sanket-sonparate-018350260)
 
-3️⃣ Run the application
-streamlit run App.py
+## Features Importance
+The model considers these as most influential factors:
+1. Item MRP (Maximum Retail Price)
+2. Outlet Type
+3. Outlet Age
+4. Item Visibility
+5. Outlet Location Type
 
-4️⃣ Open in browser
-
-Visit:
-
-http://localhost:8501
-
-📈 Model Details
-Metric	Value
-Algorithm	Gradient Boosting Regressor
-Training Samples	8,523 products
-Features Used	11
-Model Accuracy (R² Score)	~92%
-🔍 Top 5 Important Features
-
-Item MRP
-
-Outlet Type
-
-Outlet Age
-
-Item Visibility
-
-Outlet Location Type
-
-🖼️ UI Preview / Architecture
-
-(If you want me to add the uploaded image into the README, just tell me and I’ll embed it neatly!)
-
-👨‍💻 Developer
-
-Your Name Here
-📧 Email: your-email@example.com
-
-🔗 GitHub: yourusername
-
-🔗 LinkedIn: Your Profile URL
-
-(If you want me to fill this with your actual name and links, just tell me!)
-
-⭐ Future Enhancements
-
-Add database integration (MySQL / PostgreSQL)
-
-Deploy on AWS / HuggingFace / Streamlit Cloud
-
-Improve model performance with hyperparameter tuning
-
-Add visual analytics dashboard
-
-📝 License
-
-This project is open-source and available under the MIT License.
+This application demonstrates end-to-end machine learning deployment with a focus on user experience and practical business insights.
