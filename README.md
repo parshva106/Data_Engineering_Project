@@ -15,9 +15,7 @@ This project demonstrates a full workflow — from **XML data ingestion**, **MyS
 
 👉 **Live Demo:** https://dataengineeringproject-bigmart.streamlit.app
 
----
-
-## 🧱 Architecture Overview  
+---  
 
 ```markdown
 ## 🧱 Architecture Overview  
