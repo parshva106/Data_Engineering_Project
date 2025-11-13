@@ -17,7 +17,6 @@ This project demonstrates a full workflow — from **XML data ingestion**, **MyS
 
 ---  
 
-```markdown
 ## 🧱 Architecture Overview  
 
 ```mermaid
