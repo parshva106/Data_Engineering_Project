@@ -43,8 +43,7 @@ flowchart TD
     subgraph Deployment [🚀 Streamlit App]
         C2 --> D1[🌐 Streamlit Web Interface]
         D1 --> D2[📊 Predict Sales]
-    end;
-
+    end
 ## 🚀 Features  
 
 ### 📊 Data Engineering Pipeline  
@@ -140,3 +139,127 @@ BigMart-Sales-Forecasting/
 git clone https://github.com/parshva106/BigMart-Sales-Forecasting.git
 cd BigMart-Sales-Forecasting
 pip install -r requirements.txt
+### 2️⃣ Database Setup  
+
+```bash
+# Configure MySQL connection in database_operations.py
+mysql -u root -p
+CREATE DATABASE bigmart_sales;
+3️⃣ Run Data Pipeline
+bash
+Copy code
+python src/data_ingestion.py
+python src/database_operations.py
+python src/model_training.py
+4️⃣ Launch Web App
+bash
+Copy code
+streamlit run app.py
+💻 Usage Example
+📊 Making Predictions
+python
+Copy code
+import pickle
+import pandas as pd
+
+# Load the trained model
+with open('models/bigmart_best_model.pkl', 'rb') as file:
+    model = pickle.load(file)
+
+# Prepare sample input
+sample_data = {
+    'Item_Identifier': 'FDA15',
+    'Item_Weight': 9.30,
+    'Item_Fat_Content': 'Low Fat',
+    'Item_Visibility': 0.016,
+    'Item_Type': 'Dairy',
+    'Item_MRP': 249.80,
+    'Outlet_Identifier': 'OUT049',
+    'Outlet_Size': 'Medium',
+    'Outlet_Location_Type': 'Tier 1',
+    'Outlet_Type': 'Supermarket Type1',
+    'Outlet_Age': 5
+}
+
+prediction = model.predict(pd.DataFrame([sample_data]))
+print(f"Predicted Sales: ₹{prediction[0]:.2f}")
+📊 Results & Performance
+Achieved high accuracy in predicting retail sales
+
+Robust generalization across various outlet types and product categories
+
+Handles mixed (categorical + numerical) data effectively
+
+Scalable and easy to retrain with updated datasets
+
+🔧 Configuration
+Environment Variables
+bash
+Copy code
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=bigmart_sales
+MySQL Schema
+sql
+Copy code
+CREATE TABLE item_info (
+  item_id VARCHAR(50),
+  weight FLOAT,
+  fat_content VARCHAR(20),
+  ...
+);
+
+CREATE TABLE outlet_info (
+  outlet_id VARCHAR(50),
+  size VARCHAR(20),
+  location_type VARCHAR(20),
+  ...
+);
+
+CREATE TABLE sales_info (
+  item_id VARCHAR(50),
+  outlet_id VARCHAR(50),
+  sales FLOAT,
+  ...
+);
+🤝 Contributing
+Fork the repository
+
+Create a new feature branch
+
+bash
+Copy code
+git checkout -b feature/AmazingFeature
+Commit your changes
+
+bash
+Copy code
+git commit -m 'Add some AmazingFeature'
+Push to the branch
+
+bash
+Copy code
+git push origin feature/AmazingFeature
+Open a Pull Request
+
+📄 License
+This project is licensed under the MIT License — see the LICENSE file for details.
+
+📞 Contact
+👨‍💻 Author: Parshva Mehta
+🎓 B.Tech – Electronics & Telecommunication
+📫 Email: parshvamehta@example.com
+🌐 GitHub: https://github.com/parshva106
+📁 Project Link: https://github.com/parshva106/BigMart-Sales-Forecasting
+
+🎯 Future Enhancements
+Real-time data streaming integration
+
+Advanced feature engineering
+
+Model monitoring dashboard
+
+A/B testing framework
+
+Multi-store inventory optimization
