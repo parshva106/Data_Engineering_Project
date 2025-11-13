@@ -43,8 +43,9 @@ flowchart TD
     subgraph Deployment [🚀 Streamlit App]
         C2 --> D1[🌐 Streamlit Web Interface]
         D1 --> D2[📊 Predict Sales]
-    end
-##  Features  
+    end;
+
+## 🚀 Features  
 
 ### 📊 Data Engineering Pipeline  
 - Automated XML data ingestion from multiple sources  
