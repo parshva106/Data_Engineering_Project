@@ -53,5 +53,4 @@ if st.button("Predict Sales"):
 
     # Make prediction
     prediction = model.predict(input_df)[0]
-    st.success(f"📈 Predicted Item Outlet Sales: ₹{prediction:.2f}")
-    
+    st.success(f"📈 Predicted Item Outlet Sales: ₹{prediction:.2f}")    
